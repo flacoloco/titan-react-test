@@ -1,68 +1,94 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+#root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Reset CSS */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Include padding and border in the element's total width and height */
 }
-a:hover {
-  color: #535bf2;
+
+html {
+  scroll-behavior: smooth;
+  /* Smooth scrolling behavior for all elements inside the html tag */
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+form,
+button,
+input,
+textarea {
+  font-family: Verdana, sans-serif;
+  /* Inherit font from parent element */
+  line-height: 1.6;
+  /* Set a default line height for better readability */
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  /* Improve text rendering on webkit browsers */
+  -webkit-font-smoothing: antialiased;
+  /* Enable font smoothing in webkit based browsers */
+  -moz-osx-font-smoothing: grayscale;
+  /* Enable font smoothing for Firefox */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+ol,
+ul {
+  list-style: none;
+  /* Remove default list styling */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+button,
+input,
+textarea {
+  border: none;
+  /* Remove all borders from inputs and buttons */
+  background: transparent;
+  /* Reset background color to ensure no inheritance */
+  outline: none;
+  /* Remove focus outlines for a cleaner look */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+img {
+  max-width: 100%;
+  /* Prevent images from being larger than their container */
+  height: auto;
+  /* Maintain aspect ratio of images */
+}
+
+table {
+  width: 100%;
+  /* Make tables responsive */
+  border-collapse: collapse;
+  /* Merge borders for a cleaner look */
+}
+
+/* Remove any animations or transitions that might affect layout or rendering */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }
