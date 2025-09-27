@@ -93,6 +93,8 @@ The project follows Atomic Design principles with five levels of components:
 - Never use index as the component name
 - Each component should have a single responsibility
 - Each component should be inside its own directory and the name of the folder and the component should match
+- Use CSS-in-JS (styled-components) for styling
+- Styles should be created in a .styles.ts file and should be inside the same folder as the component
 - Use functional components with hooks
 - Follow the lint rules defined in the project
 - Never use `any` type, always prefer specific types or generics

@@ -2,9 +2,9 @@
 // Following project guidelines: never use title in meta object, proper TypeScript types
 
 import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MovieList } from './MovieList';
-import type { Movie } from '../../../types';
+import type { Movie } from '@src/types';
 
 // Mock data for stories following project guidelines - specific types, no 'any'
 const mockMovies: Movie[] = [
