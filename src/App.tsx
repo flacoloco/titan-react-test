@@ -1,15 +1,14 @@
 import { useMovieStore } from './store';
+import type { JSX } from 'react';
 
 import './App.css';
 
-export const App = () => {
+export const App = (): JSX.Element => {
   const { selectedMovie, setSelectedMovie } = useMovieStore();
 
   return (
     <>
-      <p>
-        React test for Titan OS
-      </p>
+      // TODO: add MoviesList
     </>
   );
 };

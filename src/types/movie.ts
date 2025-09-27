@@ -4,16 +4,9 @@
 export interface Movie {
     id: number;
     title: string;
-    overview?: string;
-    releaseDate?: string;
-    posterPath?: string;
-    backdropPath?: string;
-    voteAverage?: number;
-    voteCount?: number;
-    genre?: string[];
-    runtime?: number;
-    director?: string;
-    cast?: string[];
+    images: {
+        artwork_portrait: string;
+    }
 }
 
 // Store state type for movie-related data
