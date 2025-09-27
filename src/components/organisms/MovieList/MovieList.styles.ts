@@ -1,21 +1,30 @@
 import styled from 'styled-components';
 
 export const StyledContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: flex;
   gap: 16px;
+  position: relative;
+  background-color: pink;
+  width: 100vw;
+  overflow-x: hidden;
 `;
 
-export const StyledMovieCard = styled.div<{ isSelected: boolean }>`
-  border: 2px solid ${({ isSelected }): string => (isSelected ? 'blue' : 'transparent')};
+export const StyledMovieList = styled.div<{ $selectedIndex?: number | null }>`
+  display: flex;
+  position: relative;
+  left: ${({ $selectedIndex }): string => ($selectedIndex !== null && $selectedIndex !== undefined ? `-${$selectedIndex * 254}px` : '0')};
+  transition: left 0.3s ease-in-out;
+  top: 0;
+  background-color: cyan;
+`;
+
+export const StyledMovieCard = styled.div<{ $isSelected: boolean }>`
+  border: 2px solid ${({ $isSelected }): string => ($isSelected ? 'blue' : 'transparent')};
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   transition: border-color 0.3s;
-
-  &:hover {
-    border-color: blue;
-  }
+  width: 250px;
 `;
 
 export const StyledMovieImage = styled.img`
