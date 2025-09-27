@@ -43,5 +43,6 @@ export const StyledMovieTitle = styled.h3`
   font-size: 1.2rem;
   margin: 0;
   text-align: center;
+  color: #eee;
 `;
 

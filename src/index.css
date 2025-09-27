@@ -42,6 +42,7 @@ textarea {
 }
 
 body {
+  background-color: #111;
   text-rendering: optimizeLegibility;
   /* Improve text rendering on webkit browsers */
   -webkit-font-smoothing: antialiased;
