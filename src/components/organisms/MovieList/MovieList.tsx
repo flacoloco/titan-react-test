@@ -1,7 +1,7 @@
 // MovieList Component - Organisms level component
 // Following project guidelines: TypeScript types, styled-components, single responsibility
 
-import React, { useCallback } from 'react';
+import React from 'react';
 import type { MovieListProps } from '@src/types';
 import {
   StyledContainer,
@@ -15,14 +15,12 @@ import {
 // MovieList component following functional component pattern with FC type
 export const MovieList: React.FC<MovieListProps> = ({
   movies,
-  selectedMovie,
   setSelectedMovie
 }) => {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
 
   // Handle keyboard navigation
   React.useEffect(() => {
-    console.log('Setting up keydown listener');
     const handleKeyDown = (event: KeyboardEvent): void => {
       if (movies.length === 0) return;
 
@@ -66,9 +64,8 @@ export const MovieList: React.FC<MovieListProps> = ({
             $isSelected={selectedIndex === index}
           >
             <StyledMovieImage
-              src={movie.images.artwork_portrait}
-              alt={movie.title}
-              loading='lazy'
+              $backgroundImage={movie.images.artwork_portrait}
+              $isSelected={selectedIndex === index}
             />
             {selectedIndex === index && (
               <StyledMovieTitle>{movie.title}</StyledMovieTitle>
