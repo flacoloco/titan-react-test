@@ -1,14 +1,12 @@
 // MovieList Component - Organisms level component
 // Following project guidelines: TypeScript types, styled-components, single responsibility
 
-import React from 'react';
-import type { Movie, MovieListProps } from '@src/types';
+import React, { useCallback } from 'react';
+import type { MovieListProps } from '@src/types';
 import {
   StyledContainer,
   StyledMovieCard,
-  StyledMovieId,
   StyledMovieImage,
-  StyledMovieInfo,
   StyledMovieList,
   StyledMovieTitle
 } from './MovieList.styles';
@@ -24,6 +22,7 @@ export const MovieList: React.FC<MovieListProps> = ({
 
   // Handle keyboard navigation
   React.useEffect(() => {
+    console.log('Setting up keydown listener');
     const handleKeyDown = (event: KeyboardEvent): void => {
       if (movies.length === 0) return;
 
@@ -32,7 +31,6 @@ export const MovieList: React.FC<MovieListProps> = ({
           event.preventDefault();
           setSelectedIndex((prevIndex) => {
             const newIndex = prevIndex < movies.length - 1 ? prevIndex + 1 : movies.length - 1;
-            console.log('New Index:', newIndex);
             setSelectedMovie(movies[newIndex]);
             return newIndex;
           });
@@ -41,7 +39,6 @@ export const MovieList: React.FC<MovieListProps> = ({
           event.preventDefault();
           setSelectedIndex((prevIndex) => {
             const newIndex = prevIndex > 0 ? prevIndex - 1 : 0;
-            console.log('New Index:', newIndex);
             setSelectedMovie(movies[newIndex]);
             return newIndex;
           });
@@ -60,33 +57,22 @@ export const MovieList: React.FC<MovieListProps> = ({
     };
   }, [movies, setSelectedMovie]);
 
-  const handleMovieClick = (movie: Movie): void => {
-    // Toggle selection: if same movie is clicked, deselect it
-    if (selectedMovie?.id === movie.id) {
-      setSelectedMovie(null);
-    } else {
-      setSelectedMovie(movie);
-    }
-  };
-
   return (
     <StyledContainer>
       <StyledMovieList $selectedIndex={selectedIndex}>
-        {movies.map((movie) => (
+        {movies.map((movie, index) => (
           <StyledMovieCard
             key={movie.id}
-            $isSelected={selectedMovie?.id === movie.id}
-            onClick={() => handleMovieClick(movie)}
+            $isSelected={selectedIndex === index}
           >
             <StyledMovieImage
               src={movie.images.artwork_portrait}
               alt={movie.title}
               loading='lazy'
             />
-            <StyledMovieInfo>
+            {selectedIndex === index && (
               <StyledMovieTitle>{movie.title}</StyledMovieTitle>
-              <StyledMovieId>ID: {movie.id}</StyledMovieId>
-            </StyledMovieInfo>
+            )}
           </StyledMovieCard>
         ))}
       </StyledMovieList>
