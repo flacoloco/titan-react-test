@@ -17,14 +17,22 @@ export const StyledMovieList = styled.div<{ $selectedIndex: number }>`
   height: 440px;
 `;
 
-export const StyledMovieCard = styled.div<{ $isSelected: boolean }>`
-  border-radius: 8px;
+export const StyledMovieCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+`;
+
+export const StyledMovieImageContainer = styled.div<{ $isSelected: boolean }>`
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   transition: border-color 0.3s ease-in-out;
   width: 280px;
-  height: 370px;
-  padding: 16px;
+  height: 352px;
+  padding: 16px 0;
   box-shadow: ${({ $isSelected }): string => ($isSelected ? '0px 0px 15px 4px rgba(109,192,255,0.38)' : 'none')};
 `;
 
@@ -42,7 +50,10 @@ export const StyledMovieImage = styled.div<{ $backgroundImage: string, $isSelect
 export const StyledMovieTitle = styled.h3`
   font-size: 1.2rem;
   margin: 0;
-  text-align: center;
-  color: #eee;
+  text-align: left;
+  width: max-content;
+  position: absolute;
+  bottom: 25px;
+  left: 16px;
 `;
 

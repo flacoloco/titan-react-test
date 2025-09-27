@@ -39,6 +39,7 @@ textarea {
   /* Inherit font from parent element */
   line-height: 1.6;
   /* Set a default line height for better readability */
+  color: #eee;
 }
 
 body {

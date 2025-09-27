@@ -7,6 +7,7 @@ import {
   StyledContainer,
   StyledMovieCard,
   StyledMovieImage,
+  StyledMovieImageContainer,
   StyledMovieList,
   StyledMovieTitle
 } from './MovieList.styles';
@@ -59,14 +60,17 @@ export const MovieList: React.FC<MovieListProps> = ({
     <StyledContainer>
       <StyledMovieList $selectedIndex={selectedIndex}>
         {movies.map((movie, index) => (
-          <StyledMovieCard
-            key={movie.id}
-            $isSelected={selectedIndex === index}
-          >
-            <StyledMovieImage
-              $backgroundImage={movie.images.artwork_portrait}
+          <StyledMovieCard key={movie.id}>
+            <StyledMovieImageContainer
+              key={movie.id}
               $isSelected={selectedIndex === index}
-            />
+            >
+              <StyledMovieImage
+                $backgroundImage={movie.images.artwork_portrait}
+                $isSelected={selectedIndex === index}
+              />
+            </StyledMovieImageContainer>
+
             {selectedIndex === index && (
               <StyledMovieTitle>{movie.title}</StyledMovieTitle>
             )}
