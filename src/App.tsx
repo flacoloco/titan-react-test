@@ -1,6 +1,6 @@
 import { useMovieStore } from './store';
 
-import './App.css'
+import './App.css';
 
 export const App = () => {
   const { selectedMovie, setSelectedMovie } = useMovieStore();
@@ -11,5 +11,5 @@ export const App = () => {
         React test for Titan OS
       </p>
     </>
-  )
-}
+  );
+};
