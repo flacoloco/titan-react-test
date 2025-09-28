@@ -25,7 +25,7 @@ export const App = (): JSX.Element => {
         movies={movies}
         onSelectMovie={setSelectedMovie}
       />
-      <StyledSynopsis>
+      <StyledSynopsis data-testid='movie-synopsis'>
         {selectedMovie ? selectedMovie.synopsis : ''}
       </StyledSynopsis>
     </StyledContainer>

@@ -16,6 +16,7 @@
     "test:e2e:headed": "playwright test --headed"
   },
   "dependencies": {
+    "@playwright/test": "^1.55.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "styled-components": "^6.1.19",

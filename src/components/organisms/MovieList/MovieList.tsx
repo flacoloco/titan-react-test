@@ -70,7 +70,13 @@ export const MovieList: FC<MovieListProps> = ({
       <StyledMovieList $selectedIndex={selectedIndex}>
         {movies.length === 0 && <p>No movies available</p>}
         {movies.map((movie, index) => (
-          <StyledMovieCard key={movie.id} $isSelected={selectedIndex === index}>
+          <StyledMovieCard
+            key={movie.id}
+            $isSelected={selectedIndex === index}
+            data-testid='movie-card'
+            data-selected={selectedIndex === index}
+            data-index={index}
+          >
             <StyledMovieImageContainer
               key={movie.id}
               $isSelected={selectedIndex === index}
@@ -79,12 +85,13 @@ export const MovieList: FC<MovieListProps> = ({
                 onError={(e) => onLoadImageError(e)}
                 src={movie.images.artwork_portrait}
                 $isSelected={selectedIndex === index}
+                data-testid='movie-image'
               />
             </StyledMovieImageContainer>
 
 
             {selectedIndex === index && (
-              <StyledMovieTitle>{movie.title}</StyledMovieTitle>
+              <StyledMovieTitle data-testid='movie-title'>{movie.title}</StyledMovieTitle>
             )}
           </StyledMovieCard>
         ))}
