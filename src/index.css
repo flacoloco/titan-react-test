@@ -94,3 +94,10 @@ table {
     transition-duration: 0.001ms !important;
   }
 }
+
+img::before {
+  content: "❌ Image Load Failed";
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+const cardWidth = window.innerWidth / 6;
+const cardMargin = 16;
+const totalCardWidth = cardWidth + cardMargin;
+
 export const StyledContainer = styled.div`
   display: flex;
   gap: 16px;
@@ -11,40 +15,41 @@ export const StyledContainer = styled.div`
 export const StyledMovieList = styled.div<{ $selectedIndex: number }>`
   display: flex;
   position: relative;
-  left: ${({ $selectedIndex }): string => (`${($selectedIndex * -280) + 150}px`)};
+  left: ${({ $selectedIndex }): string => (`${($selectedIndex * -totalCardWidth) + 150}px`)};
   transition: left 0.3s ease-in-out;
   top: 20px;
-  height: 440px;
+  height: 480px;
+  gap: 16px;
 `;
 
-export const StyledMovieCard = styled.div`
+export const StyledMovieCard = styled.div<{ $isSelected: boolean }>`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
+  align-items: start;
+  justify-content: start;
   position: relative;
+  width: ${cardWidth}px;
+  gap: 16px;
 `;
 
 export const StyledMovieImageContainer = styled.div<{ $isSelected: boolean }>`
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.3s ease-in-out;
-  width: 280px;
-  height: 352px;
-  padding: 16px 0;
-  box-shadow: ${({ $isSelected }): string => ($isSelected ? '0px 0px 15px 4px rgba(109,192,255,0.38)' : 'none')};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: ${cardWidth}px;
+  height: ${cardWidth * 1.5}px;
 `;
 
-export const StyledMovieImage = styled.div<{ $backgroundImage: string, $isSelected: boolean }>`
+export const StyledMImage = styled.img<{ $isSelected: boolean }>`
   width: 100%;
-  height: 320px;
-  background-image: url(${({ $backgroundImage }): string => $backgroundImage});
-  background-size: ${({ $isSelected }): string => ($isSelected ? '75%' : '65%')};
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: background-size 0.3s ease-in-out;
-  filter: ${({ $isSelected }): string => ($isSelected ? 'none' : 'grayscale(50%)')};
+  scale: ${({ $isSelected }): string => ($isSelected ? '1' : '.8')};
+  height: auto;
+  border-radius: 16px;
+  box-shadow: ${({ $isSelected }): string => ($isSelected ? '0px 0px 15px 4px rgba(107, 167, 214, 0.38)' : 'none')};
+  transition: scale 0.3s ease-in-out;
+  will-change: transform;
+  filter: ${({ $isSelected }): string => ($isSelected ? 'grayscale(0%)' : 'grayscale(70%)')};
 `;
 
 export const StyledMovieTitle = styled.h3`
@@ -52,8 +57,5 @@ export const StyledMovieTitle = styled.h3`
   margin: 0;
   text-align: left;
   width: max-content;
-  position: absolute;
-  bottom: 25px;
-  left: 16px;
 `;
 

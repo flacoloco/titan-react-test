@@ -5,12 +5,14 @@ import React from 'react';
 import type { MovieListProps } from '@src/types';
 import {
   StyledContainer,
+  StyledMImage,
   StyledMovieCard,
-  StyledMovieImage,
+  // StyledMovieImage,
   StyledMovieImageContainer,
   StyledMovieList,
   StyledMovieTitle
 } from './MovieList.styles';
+import imageError from '@src/assets/imageError.svg';
 
 
 // MovieList component following functional component pattern with FC type
@@ -56,20 +58,26 @@ export const MovieList: React.FC<MovieListProps> = ({
     };
   }, [movies, setSelectedMovie]);
 
+  const onLoadImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>): void => {
+    e.currentTarget.src = imageError;
+  };
+
   return (
     <StyledContainer>
       <StyledMovieList $selectedIndex={selectedIndex}>
         {movies.map((movie, index) => (
-          <StyledMovieCard key={movie.id}>
+          <StyledMovieCard key={movie.id} $isSelected={selectedIndex === index}>
             <StyledMovieImageContainer
               key={movie.id}
               $isSelected={selectedIndex === index}
             >
-              <StyledMovieImage
-                $backgroundImage={movie.images.artwork_portrait}
+              <StyledMImage
+                onError={(e) => onLoadImageError(e)}
+                src={movie.images.artwork_portrait}
                 $isSelected={selectedIndex === index}
               />
             </StyledMovieImageContainer>
+
 
             {selectedIndex === index && (
               <StyledMovieTitle>{movie.title}</StyledMovieTitle>
