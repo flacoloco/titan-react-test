@@ -3,6 +3,7 @@
 
 export interface Movie {
   id: number;
+  synopsis: string;
   title: string;
   images: {
     artwork_portrait: string;
@@ -10,19 +11,14 @@ export interface Movie {
 }
 
 // Store state type for movie-related data
-export interface MovieState {
+export interface MovieStore {
   selectedMovie: Movie | null;
-}
-
-// Store actions type for movie-related operations
-export interface MovieActions {
   setSelectedMovie: (movie: Movie | null) => void;
 }
 
 export interface MovieListProps {
   movies: Movie[];
-  selectedMovie: Movie | null;
-  setSelectedMovie: (movie: Movie | null) => void;
+  onSelectMovie: (movie: Movie | null) => void;
 }
 
 export interface JsonMovie {

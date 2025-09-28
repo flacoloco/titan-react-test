@@ -18,7 +18,7 @@ export const StyledMovieList = styled.div<{ $selectedIndex: number }>`
   left: ${({ $selectedIndex }): string => (`${($selectedIndex * -totalCardWidth) + 150}px`)};
   transition: left 0.3s ease-in-out;
   top: 20px;
-  height: 480px;
+  height: 430px;
   gap: 16px;
 `;
 

@@ -6,6 +6,7 @@ import moviesData from '@src/mockData/movies.json';
 // Interface for the JSON movie structure
 interface JsonMovie {
   id: number;
+  synopsis: string;
   title: string;
   images?: {
     artwork_portrait?: string;
@@ -20,6 +21,7 @@ interface MoviesCollection {
 // Transform JSON data to match Movie type interface
 const transformMovieData = (jsonMovie: JsonMovie): Movie => ({
   id: jsonMovie.id,
+  synopsis: jsonMovie.synopsis,
   title: jsonMovie.title,
   images: {
     artwork_portrait: jsonMovie.images?.artwork_portrait || ''
@@ -47,11 +49,7 @@ const meta: Meta<typeof MovieList> = {
       description: 'Array of movie objects to display in the list',
       control: { type: 'object' }
     },
-    selectedMovie: {
-      description: 'Currently selected movie object or null if none selected',
-      control: { type: 'object' }
-    },
-    setSelectedMovie: {
+    onSelectMovie: {
       description: 'Function to update the selected movie state',
       action: 'setSelectedMovie'
     }
@@ -66,8 +64,7 @@ export const Default: Story = {
   render: () => (
     <MovieList
       movies={mockMovies}
-      selectedMovie={null}
-      setSelectedMovie={() => { }}
+      onSelectMovie={() => { }}
     />),
   parameters: {
     docs: {
@@ -81,8 +78,7 @@ export const Default: Story = {
 export const Empty: Story = {
   args: {
     movies: [],
-    selectedMovie: null,
-    setSelectedMovie: (): void => { }
+    onSelectMovie: (): void => { }
   },
   parameters: {
     docs: {
@@ -96,8 +92,7 @@ export const Empty: Story = {
 export const SingleMovie: Story = {
   args: {
     movies: [mockMovies[0]],
-    selectedMovie: null,
-    setSelectedMovie: (): void => { }
+    onSelectMovie: (): void => { }
   },
   parameters: {
     docs: {

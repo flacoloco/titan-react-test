@@ -2,6 +2,7 @@ import { useMovieStore } from './store';
 import { type JSX } from 'react';
 import { useData } from './hooks';
 import { MovieList } from './components/organisms';
+import { StyledContainer, StyledSynopsis, StyleHeader } from './App.styles';
 
 export const App = (): JSX.Element => {
   const { selectedMovie, setSelectedMovie } = useMovieStore();
@@ -16,17 +17,17 @@ export const App = (): JSX.Element => {
   }
 
   return (
-    <>
-      <p>
+    <StyledContainer>
+      <StyleHeader>
         React Movie App by Alejandro Vásquez. Use left and right arrow keys to navigate.
-      </p>
-      <div style={{ backgroundColor: 'pink', width: '1000px' }}>
-        <MovieList
-          movies={movies}
-          selectedMovie={null}
-          setSelectedMovie={() => { }}
-        />
-      </div>
-    </>
+      </StyleHeader>
+      <MovieList
+        movies={movies}
+        onSelectMovie={setSelectedMovie}
+      />
+      <StyledSynopsis>
+        {selectedMovie ? selectedMovie.synopsis : ''}
+      </StyledSynopsis>
+    </StyledContainer>
   );
 };

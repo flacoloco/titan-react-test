@@ -1,4 +1,5 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import type { FC, SyntheticEvent } from 'react';
 import type { MovieListProps } from '@src/types';
 import {
   StyledContainer,
@@ -10,14 +11,14 @@ import {
 } from './MovieList.styles';
 import imageError from '@src/assets/imageError.svg';
 
-export const MovieList: React.FC<MovieListProps> = ({
+export const MovieList: FC<MovieListProps> = ({
   movies,
-  setSelectedMovie
+  onSelectMovie
 }) => {
-  const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   // Handle keyboard navigation
-  React.useEffect(() => {
+  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent): void => {
       if (movies.length === 0) return;
 
@@ -26,16 +27,16 @@ export const MovieList: React.FC<MovieListProps> = ({
           event.preventDefault();
           setSelectedIndex((prevIndex) => {
             const newIndex = prevIndex < movies.length - 1 ? prevIndex + 1 : movies.length - 1;
-            setSelectedMovie(movies[newIndex]);
             return newIndex;
           });
+
           break;
         case 'ArrowLeft':
           event.preventDefault();
           setSelectedIndex((prevIndex) => {
             const newIndex = prevIndex > 0 ? prevIndex - 1 : 0;
-            setSelectedMovie(movies[newIndex]);
             return newIndex;
+
           });
           break;
         default:
@@ -50,9 +51,17 @@ export const MovieList: React.FC<MovieListProps> = ({
     return (): void => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [movies, setSelectedMovie]);
+  }, [movies, onSelectMovie]);
 
-  const onLoadImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>): void => {
+  useEffect(() => {
+    if (movies.length > 0) {
+      onSelectMovie(movies[selectedIndex]);
+    } else {
+      onSelectMovie(null);
+    }
+  }, [selectedIndex, movies, onSelectMovie]);
+
+  const onLoadImageError = (e: SyntheticEvent<HTMLImageElement, Event>): void => {
     e.currentTarget.src = imageError;
   };
 

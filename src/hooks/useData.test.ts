@@ -10,6 +10,7 @@ import type { Movie } from '@src/types/movie';
 const mockMovieData: Movie[] = [
   {
     id: 1,
+    synopsis: 'A great movie about testing.',
     title: 'Test Movie 1',
     images: {
       artwork_portrait: 'https://example.com/poster1.jpg'
@@ -17,6 +18,7 @@ const mockMovieData: Movie[] = [
   },
   {
     id: 2,
+    synopsis: 'Another great movie about testing.',
     title: 'Test Movie 2',
     images: {
       artwork_portrait: 'https://example.com/poster2.jpg'
