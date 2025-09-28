@@ -24,6 +24,7 @@ const transformMovieData = (jsonMovie: JsonMovie): Movie => ({
 
 // Get movies from JSON file and transform them
 const mockMovies: Movie[] = (moviesData as MoviesCollection).collection
+  .slice(0, 20) // Take first 20 movies
   .filter((movie: JsonMovie) => movie.images?.artwork_portrait) // Filter out movies without portrait images
   .map(transformMovieData);
 
