@@ -18,7 +18,7 @@ export const StyledMovieList = styled.div<{ $selectedIndex: number }>`
   left: ${({ $selectedIndex }): string => (`${($selectedIndex * -totalCardWidth) + 150}px`)};
   transition: left 0.3s ease-in-out;
   top: 20px;
-  height: 430px;
+  height: auto;
   gap: 16px;
 `;
 
@@ -30,6 +30,7 @@ export const StyledMovieCard = styled.div<{ $isSelected: boolean }>`
   position: relative;
   width: ${cardWidth}px;
   gap: 16px;
+  height: ${cardWidth * 1.5 + 70}px;
 `;
 
 export const StyledMovieImageContainer = styled.div<{ $isSelected: boolean }>`
