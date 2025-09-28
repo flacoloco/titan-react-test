@@ -3,9 +3,34 @@ import { MovieList } from './MovieList';
 import type { Movie } from '@src/types';
 import moviesData from '@src/mockData/movies.json';
 
+// Interface for the JSON movie structure
+interface JsonMovie {
+  id: number;
+  title: string;
+  images?: {
+    artwork_portrait?: string;
+  };
+}
+
+// Interface for the movies collection
+interface MoviesCollection {
+  collection: JsonMovie[];
+}
+
+// Transform JSON data to match Movie type interface
+const transformMovieData = (jsonMovie: JsonMovie): Movie => ({
+  id: jsonMovie.id,
+  title: jsonMovie.title,
+  images: {
+    artwork_portrait: jsonMovie.images?.artwork_portrait || ''
+  }
+});
+
 // Get movies from JSON file and transform them
-const mockMovies: Movie[] = moviesData.collection
-  .slice(0, 20); // Take first 20 movies
+const mockMovies: Movie[] = (moviesData as MoviesCollection).collection
+  .slice(0, 10) // Take first 10 movies for better performance
+  .filter((movie: JsonMovie) => movie.images?.artwork_portrait) // Filter out movies without portrait images
+  .map(transformMovieData);
 
 const meta: Meta<typeof MovieList> = {
   component: MovieList,

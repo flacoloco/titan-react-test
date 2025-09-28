@@ -17,11 +17,16 @@ export const App = (): JSX.Element => {
 
   return (
     <>
-      <MovieList
-        movies={movies}
-        selectedMovie={null}
-        setSelectedMovie={() => { }}
-      />
+      <p>
+        React Movie App by Alejandro Vásquez. Use left and right arrow keys to navigate.
+      </p>
+      <div style={{ backgroundColor: 'pink', width: '1000px' }}>
+        <MovieList
+          movies={movies}
+          selectedMovie={null}
+          setSelectedMovie={() => { }}
+        />
+      </div>
     </>
   );
 };
