@@ -24,3 +24,14 @@ export interface MovieListProps {
   selectedMovie: Movie | null;
   setSelectedMovie: (movie: Movie | null) => void;
 }
+
+export interface JsonMovie {
+  id: number;
+  title: string;
+  images?: {
+    artwork_portrait?: string;
+  };
+}
+export interface MoviesCollection {
+  collection: JsonMovie[];
+}

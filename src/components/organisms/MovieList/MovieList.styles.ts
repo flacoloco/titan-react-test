@@ -46,7 +46,7 @@ export const StyledMImage = styled.img<{ $isSelected: boolean }>`
   scale: ${({ $isSelected }): string => ($isSelected ? '1' : '.8')};
   height: auto;
   border-radius: 16px;
-  box-shadow: ${({ $isSelected }): string => ($isSelected ? '0px 0px 15px 4px rgba(107, 167, 214, 0.38)' : 'none')};
+  box-shadow: ${({ $isSelected }): string => ($isSelected ? '0px 0px 15px 4px rgba(71, 165, 216, 0.38)' : 'none')};
   transition: scale 0.3s ease-in-out;
   will-change: transform;
   filter: ${({ $isSelected }): string => ($isSelected ? 'grayscale(0%)' : 'grayscale(70%)')};

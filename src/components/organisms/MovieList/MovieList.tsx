@@ -1,21 +1,15 @@
-// MovieList Component - Organisms level component
-// Following project guidelines: TypeScript types, styled-components, single responsibility
-
 import React from 'react';
 import type { MovieListProps } from '@src/types';
 import {
   StyledContainer,
   StyledMImage,
   StyledMovieCard,
-  // StyledMovieImage,
   StyledMovieImageContainer,
   StyledMovieList,
   StyledMovieTitle
 } from './MovieList.styles';
 import imageError from '@src/assets/imageError.svg';
 
-
-// MovieList component following functional component pattern with FC type
 export const MovieList: React.FC<MovieListProps> = ({
   movies,
   setSelectedMovie
@@ -65,6 +59,7 @@ export const MovieList: React.FC<MovieListProps> = ({
   return (
     <StyledContainer>
       <StyledMovieList $selectedIndex={selectedIndex}>
+        {movies.length === 0 && <p>No movies available</p>}
         {movies.map((movie, index) => (
           <StyledMovieCard key={movie.id} $isSelected={selectedIndex === index}>
             <StyledMovieImageContainer

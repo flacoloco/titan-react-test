@@ -2,31 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MovieList } from './MovieList';
 import type { Movie } from '@src/types';
 import moviesData from '@src/mockData/movies.json';
-interface JsonMovie {
-  id: number;
-  title: string;
-  images?: {
-    artwork_portrait?: string;
-  };
-}
-interface MoviesCollection {
-  collection: JsonMovie[];
-}
-
-// Transform JSON data to match Movie type interface
-const transformMovieData = (jsonMovie: JsonMovie): Movie => ({
-  id: jsonMovie.id,
-  title: jsonMovie.title,
-  images: {
-    artwork_portrait: jsonMovie.images?.artwork_portrait || ''
-  }
-});
 
 // Get movies from JSON file and transform them
-const mockMovies: Movie[] = (moviesData as MoviesCollection).collection
-  .slice(0, 20) // Take first 20 movies
-  .filter((movie: JsonMovie) => movie.images?.artwork_portrait) // Filter out movies without portrait images
-  .map(transformMovieData);
+const mockMovies: Movie[] = moviesData.collection
+  .slice(0, 20); // Take first 20 movies
 
 const meta: Meta<typeof MovieList> = {
   component: MovieList,
@@ -34,7 +13,7 @@ const meta: Meta<typeof MovieList> = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'MovieList is an organism component that displays a grid of movies with selection functionality. It follows atomic design principles and allows users to select/deselect movies by clicking on them.'
+        component: 'MovieList is an organism component that displays a list of movies. It allows users to navigate the list using keyboard controls.'
       }
     }
   },
@@ -68,7 +47,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default view of MovieList with interactive selection. Click on any movie to select it, click again to deselect.'
+        story: 'Default view of MovieList.'
       }
     }
   }
@@ -99,21 +78,6 @@ export const SingleMovie: Story = {
     docs: {
       description: {
         story: 'MovieList component displaying only one movie.'
-      }
-    }
-  }
-};
-
-export const ManyMovies: Story = {
-  args: {
-    movies: mockMovies,
-    selectedMovie: null,
-    setSelectedMovie: (): void => { }
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'MovieList with many movies.'
       }
     }
   }
