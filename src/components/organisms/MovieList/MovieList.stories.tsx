@@ -1,13 +1,7 @@
-// MovieList Stories - Storybook documentation for MovieList component
-// Following project guidelines: never use title in meta object, proper TypeScript types
-
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MovieList } from './MovieList';
 import type { Movie } from '@src/types';
 import moviesData from '@src/mockData/movies.json';
-
-// Interface for the JSON movie structure
 interface JsonMovie {
   id: number;
   title: string;
@@ -15,8 +9,6 @@ interface JsonMovie {
     artwork_portrait?: string;
   };
 }
-
-// Interface for the movies collection
 interface MoviesCollection {
   collection: JsonMovie[];
 }
@@ -65,22 +57,13 @@ const meta: Meta<typeof MovieList> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Interactive story with state management for demonstration
-const MovieListWithState = (): React.ReactElement => {
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-
-  return (
+export const Default: Story = {
+  render: () => (
     <MovieList
       movies={mockMovies}
-      selectedMovie={selectedMovie}
-      setSelectedMovie={setSelectedMovie}
-    />
-  );
-};
-
-// Default story showing the component with interactive state
-export const Default: Story = {
-  render: () => <MovieListWithState />,
+      selectedMovie={null}
+      setSelectedMovie={() => { }}
+    />),
   parameters: {
     docs: {
       description: {
@@ -90,7 +73,6 @@ export const Default: Story = {
   }
 };
 
-// Story showing empty state
 export const Empty: Story = {
   args: {
     movies: [],
