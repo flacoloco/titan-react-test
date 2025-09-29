@@ -82,6 +82,7 @@ export const MovieList: FC<MovieListProps> = ({
               $isSelected={selectedIndex === index}
             >
               <StyledMImage
+                loading='lazy'
                 onError={(e) => onLoadImageError(e)}
                 src={movie.images.artwork_portrait}
                 $isSelected={selectedIndex === index}

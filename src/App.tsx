@@ -6,28 +6,28 @@ import { StyledContainer, StyledSynopsis, StyleHeader } from './App.styles';
 
 export const App = (): JSX.Element => {
   const { selectedMovie, setSelectedMovie } = useMovieStore();
-  const [movies, error] = useData();
+  const [movies, error, isLoading] = useData();
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (!movies) {
-    return <div>Loading...</div>;
-  }
+  console.log('useDAta', movies, error, isLoading);
 
   return (
     <StyledContainer>
       <StyleHeader>
         React Movie App by Alejandro Vásquez. Use left and right arrow keys to navigate.
       </StyleHeader>
-      <MovieList
-        movies={movies}
-        onSelectMovie={setSelectedMovie}
-      />
-      <StyledSynopsis data-testid='movie-synopsis'>
-        {selectedMovie ? selectedMovie.synopsis : ''}
-      </StyledSynopsis>
+      {isLoading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
+      {movies && (
+        <>
+          <MovieList
+            movies={movies}
+            onSelectMovie={setSelectedMovie}
+          />
+          <StyledSynopsis data-testid='movie-synopsis'>
+            {selectedMovie ? selectedMovie.synopsis : ''}
+          </StyledSynopsis>
+        </>
+      )}
     </StyledContainer>
   );
 };

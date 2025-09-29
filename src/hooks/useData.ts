@@ -3,14 +3,16 @@ import type { Movie } from '@src/types/movie';
 
 const fetchUrl = 'https://acc01.titanos.tv/v1/genres/1/contents?market=es&device=tv&locale=es&page=1&per_page=50&type=movie';
 
+type UseDataReturn = [Movie[] | null, string | null, boolean];
 /**
  * Custom hook for fetching data from a URL
  * @param url - The URL to fetch data from
  * @returns [data, error] - Array containing the fetched data and error state
  */
-export const useData = (): [Movie[] | null, string | null] => {
+export const useData = (): UseDataReturn => {
   const [data, setData] = useState<Movie[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -32,6 +34,8 @@ export const useData = (): [Movie[] | null, string | null] => {
       } catch (err) {
         setError(`An unknown error occurred:${err}`);
         setData(null);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -43,5 +47,5 @@ export const useData = (): [Movie[] | null, string | null] => {
     };
   }, []);
 
-  return [data, error];
+  return [data, error, isLoading];
 };
