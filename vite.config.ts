@@ -28,7 +28,7 @@ export default defineConfig({
         },
         test: {
           name: 'unit',
-          include: ['**/*.{test,spec}.{js,ts,tsx}'],
+          include: ['**/*.{test}.{js,ts,tsx}'],
           exclude: ['**/*.stories.{js,ts,tsx}', '**/node_modules/**'],
           environment: 'jsdom',
           setupFiles: ['./src/test-setup.ts'],
