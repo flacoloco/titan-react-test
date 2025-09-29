@@ -1,5 +1,9 @@
 {
   "name": "titan-react-test",
+  "author": {
+    "name": "Alejandro Vásquez",
+    "email": "alejandro.bcn@proton.me"
+  },
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -8,8 +8,6 @@ export const App = (): JSX.Element => {
   const { selectedMovie, setSelectedMovie } = useMovieStore();
   const [movies, error, isLoading] = useData();
 
-  console.log('useDAta', movies, error, isLoading);
-
   return (
     <StyledContainer>
       <StyleHeader>

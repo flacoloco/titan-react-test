@@ -39,18 +39,12 @@ src/
 
 ### Installation
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd titan-react-test
-```
-
-2. Install dependencies:
+1. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Start the development server:
+2. Start the development server:
 ```bash
 npm run dev
 ```
@@ -137,21 +131,27 @@ https://acc01.titanos.tv/v1/genres/1/contents?market=es&device=tv&locale=es&page
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes with proper TypeScript types
-4. Add tests for new functionality
-5. Run linting and tests
-6. Submit a pull request
 
-## 📊 Project Status
+## Selected question
+How would you optimize the frontend for smooth performance when displaying thousands of content tiles with images and metadata? Discuss your approach to lazy loading, caching, and memory management for resource-constrained CTV devices.
 
-- ✅ Core movie browsing functionality
-- ✅ Keyboard navigation implementation
-- ✅ API integration with error handling
-- ✅ Comprehensive testing suite
-- ✅ Storybook component documentation
-- ✅ TypeScript strict mode compliance
-- ✅ Production build optimization
+### Answer
+Here a list of actions:
+
+1. Lazy loading: using the loading='lazy' in the img tag, the loading of the image is deferred until is closed to the viewport. This allows to load only the images to be shown initially and the rest only when they are needed
+
+2. Resource prioritization: using the Priority Hints API you can priorize some assets and delay others, warranting a fast initial loading of what you need to show asap.
+
+3. Images size: the current size of the images provided for this exercise is 2000x3000px, which it seems excesive for this case. It could be useful for showing the image once you enter into the movie screen but not to the list. Providing different versions of each image to fit the different needs is a good practice.
+
+4. CDN: using CDNs for storing the external assets, like images allow us to load the image from different locations and with mamimum speed.
+
+5. Reduced dataset: the dataset loaded with the provided URL has a lot of unnecessary information. Using a technology like GraphQL you could provide in the request the schema of the needed data you need at any moment, reducing the size of data to get and therefore incrementing the download speed.
+
+6. Virtualization: using libraries like react-window, you can manage big lists or grids without the common performance problems you could find when rendering lots of data. This library manage to render only the visible part of the list or grid you have on screen.
+
+7. Caching: using service workers you can cache assets to do not request them again. This also allows the app to work offline or under poor network connections.
+
+8. Performance profiling: using tools like Lighthouse or the Network throwing in the Chrome Devtools, you can test the app under different connections, identifying better the possible bottlenecks and areas for improvement.
+
